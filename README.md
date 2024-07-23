@@ -21,7 +21,7 @@ This work exploits the complementary strengths of LLMs and supervised MT by guid
 ## Overview
 Working with LLaMA-2 models, we consider prompting strategies varying the nature of feedback provided and then fine-tune the LLM to improve its ability to exploit the provided guidance. Through experiments on Chinese-English, English-German, and English-Russian MQM data, we demonstrate that prompting LLMs to post-edit MT improves TER, BLEU and COMET scores, although the benefits of fine-grained feedback are not clear. Fine-tuning helps integrate fine-grained feedback more effectively and leads to further improvements in translation quality based on both automatic and human evaluation. The following figure is an illustration of our work.
 <p align="center">
-  <img src="https://github.com/dayeonki/mt_feedback/assets/68190200/1a4c144c-0731-4c54-b694-683d08ee3cdd">
+  <img src="https://github.com/user-attachments/assets/b46a55f0-f312-4182-80d1-5ad7a56697b5" width="600">
 </p>
 
 ## Automatic Error Annotation
