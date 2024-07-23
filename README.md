@@ -1,15 +1,15 @@
 # Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations
 
-This repository contains the code, data, and pre-trained models for our NAACL 2024 Findings paper **Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations**.
+This repository contains the code and dataset for our NAACL 2024 Findings paper **Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations**.
 
 <div align="center">
-[🤖 <b>Model</b> / 🗃️ <b>Data</b> / 📄 <b>Paper</b>]
+[🤖 <b><a href=https://github.com/dayeonki/mt_feedback/tree/main/code>Code</a></b> / 🗃️ <b><a href=https://github.com/dayeonki/mt_feedback/tree/main/data>Data</a></b> / 📄 <b><a href=https://arxiv.org/abs/2404.07851>Paper</a></b>]
 </div>
 
 
 ## Abstract
-Machine Translation (MT) remains one of the last NLP tasks where large language models (LLMs) have not yet replaced dedicated supervised systems.
-This work exploits the complementary strengths of LLMs and supervised MT by guiding LLMs to automatically post-edit MT with external feedback on its quality, derived from Multidimensional Quality Metric (MQM) annotations. Working with LLaMA-2 models, we consider prompting strategies varying the nature of feedback provided and then fine-tune the LLM to improve its ability to exploit the provided guidance. Through experiments on Chinese-English, English-German, and English-Russian MQM data, we demonstrate that prompting LLMs to post-edit MT improves TER, BLEU and COMET scores, although the benefits of fine-grained feedback are not clear. Fine-tuning helps integrate fine-grained feedback more effectively and leads to further improvements in translation quality based on both automatic and human evaluation.
+Machine Translation (MT) remains one of the last NLP tasks where large language models (LLMs) have not yet replaced dedicated supervised systems. 
+This work exploits the complementary strengths of LLMs and supervised MT by guiding LLMs to automatically post-edit MT with external feedback on its quality, derived from Multidimensional Quality Metric (MQM) annotations. Working with LLaMA-2 models, we consider prompting strategies varying the nature of feedback provided and then fine-tune the LLM to improve its ability to exploit the provided guidance. Through experiments on Chinese-English, English-German, and English-Russian MQM data, we demonstrate that prompting LLMs to post-edit MT improves TER, BLEU and COMET scores, although the benefits of fine-grained feedback are not clear. Fine-tuning helps integrate fine-grained feedback more effectively and further improves translation quality based on both automatic and human evaluation.
 
 
 ## Quick Links
@@ -211,3 +211,21 @@ Arguments are as follows,
 - `--test_data_path`: Path to input test data file
 
 ## Citation
+```
+@inproceedings{ki-carpuat-2024-guiding,
+    title = "Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations",
+    author = "Ki, Dayeon  and
+      Carpuat, Marine",
+    editor = "Duh, Kevin  and
+      Gomez, Helena  and
+      Bethard, Steven",
+    booktitle = "Findings of the Association for Computational Linguistics: NAACL 2024",
+    month = jun,
+    year = "2024",
+    address = "Mexico City, Mexico",
+    publisher = "Association for Computational Linguistics",
+    url = "https://aclanthology.org/2024.findings-naacl.265",
+    pages = "4253--4273",
+    abstract = "Machine Translation (MT) remains one of the last NLP tasks where large language models (LLMs) have not yet replaced dedicated supervised systems. This work exploits the complementary strengths of LLMs and supervised MT by guiding LLMs to automatically post-edit MT with external feedback on its quality, derived from Multidimensional Quality Metric (MQM) annotations. Working with LLaMA-2 models, we consider prompting strategies varying the nature of feedback provided and then fine-tune the LLM to improve its ability to exploit the provided guidance. Through experiments on Chinese-English, English-German, and English-Russian MQM data, we demonstrate that prompting LLMs to post-edit MT improves TER, BLEU and COMET scores, although the benefits of fine-grained feedback are not clear. Fine-tuning helps integrate fine-grained feedback more effectively and further improves translation quality based on both automatic and human evaluation.",
+}
+```
