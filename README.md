@@ -3,7 +3,8 @@
 This repository contains the code and dataset for our NAACL 2024 Findings paper **Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations**.
 
 <div align="center">
-[🤖 <b><a href=https://github.com/dayeonki/mt_feedback/tree/main/code>Code</a></b> / 🤗 <b><a href=https://huggingface.co/collections/zoeyki/mt-feedback-669fe63c944b597ce299b545>Dataset</a></b> / 📄 <b><a href=https://arxiv.org/abs/2404.07851>Paper</a></b>]
+<img src="https://github.com/user-attachments/assets/b3415a65-ccac-4468-a291-07602cb95509" style="width: 15px;" alt="code"> <b><a href=https://github.com/dayeonki/mt_feedback>Code</a></b> | <img src="https://github.com/user-attachments/assets/2bd9af9b-2182-4aef-83cd-6e9ca6189a39" style="width: 15px;" alt="data">
+ <b><a href=https://huggingface.co/collections/zoeyki/mt-feedback-669fe63c944b597ce299b545>Dataset</a></b> | <img src="https://github.com/user-attachments/assets/fc2ca3c2-3e78-4ca4-a208-448c0a6c7068" style="width: 15px;" alt="paper"> <b><a href=https://arxiv.org/pdf/2502.16682>Paper</a></b>
 </div>
 
 
