@@ -1,5 +1,7 @@
 # Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations
 
+Authors: Dayeon Ki, Marine Carpuat
+
 This repository contains the code and dataset for our NAACL 2024 Findings paper **Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations**.
 
 <div align="center">
