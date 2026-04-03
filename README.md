@@ -1,33 +1,68 @@
-# Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations
+<div align="center">
 
-Authors: Dayeon Ki, Marine Carpuat
+ # Guiding Large Language Models to Post-Edit <br> Machine Translation with Error Annotations
 
-This repository contains the code and dataset for our NAACL 2024 Findings paper **Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations**.
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b46a55f0-f312-4182-80d1-5ad7a56697b5" width="500">
+</p>
+
+<a href=https://dayeonki.github.io/>Dayeon Ki</a>, <a href=https://www.cs.umd.edu/~marine/>Marine Carpuat<a><br>
+University of Maryland
+<br>
+
+This repository contains the code and dataset for our NAACL Findings 2024 paper <br> **Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations**.
+
+<p>
+  <a href="https://aclanthology.org/2024.findings-naacl.265/" target="_blank" style="text-decoration:none">
+    <img src="https://img.shields.io/badge/arXiv-Paper-b31b1b?style=flat&logo=arxiv" alt="arXiv">
+  </a>
+ <br>
+  <a href="https://huggingface.co/datasets/zoeyki/mt_feedback_dataset" target="_blank">
+    <img src="https://img.shields.io/badge/🤗-Dataset-yellow?style=flat" alt="HuggingFace">
+  </a>
+</p>
+
+</div>
+
+---
+
+## 👾 TL;DR
+We exploit the complementary strengths of LLMs and supervised MT by guiding LLMs to automatically post-edit MT with external feedback on its quality, derived from Multidimensional Quality Metric (MQM) annotations.
+
+
+## 📰 News
+- **`2024-05-15`** Our paper is accepted to **NAACL Findings 2024**!
+- **`2024-05-01`** Our paper is featured in <a href=https://slator.com/how-to-improve-post-editing-capabilities-of-large-language-models/>Slator</a>!
+
+
+## ✏️ Content
+- [🗺️ Overview](#overview)
+- [🚀 Quick Start](#quick_start)
+  - [Automatic Error Annotation](#automatic-error-annotation)
+  - [Prompting Experiments](#prompting-experiments)
+  - [Fine-tuning Experiments](#fine-tuning-experiments)
+- [🤲 Citation](#citation)
+- [📧 Contact](#contact)
+
+---
+
+
+<a id="overview"></a>
+## 🗺️ Overview
+
+Working with LLaMA-2 models, we consider prompting strategies varying the nature of feedback provided and then fine-tune the LLM to improve its ability to exploit the provided guidance. Through experiments on Chinese-English, English-German, and English-Russian MQM data, we demonstrate that prompting LLMs to post-edit MT improves TER, BLEU and COMET scores, although the benefits of fine-grained feedback are not clear. Fine-tuning helps integrate fine-grained feedback more effectively and leads to further improvements in translation quality based on both automatic and human evaluation.
+
+### Results
 
 <div align="center">
-<img src="https://github.com/user-attachments/assets/b3415a65-ccac-4468-a291-07602cb95509" style="width: 15px;" alt="code"> <b><a href=https://github.com/dayeonki/mt_feedback>Code</a></b> | <img src="https://github.com/user-attachments/assets/2bd9af9b-2182-4aef-83cd-6e9ca6189a39" style="width: 15px;" alt="data">
- <b><a href=https://huggingface.co/collections/zoeyki/mt-feedback-669fe63c944b597ce299b545>Dataset</a></b> | <img src="https://github.com/user-attachments/assets/fc2ca3c2-3e78-4ca4-a208-448c0a6c7068" style="width: 15px;" alt="paper"> <b><a href=https://aclanthology.org/2024.findings-naacl.265/>Paper</a></b>
+<img width="806" height="432" alt="Screenshot 2026-04-03 at 1 59 02 PM" src="https://github.com/user-attachments/assets/bf7083e8-bbd9-4621-a119-5649a567823c" />
 </div>
 
 
-## Abstract
-Machine Translation (MT) remains one of the last NLP tasks where large language models (LLMs) have not yet replaced dedicated supervised systems. 
-This work exploits the complementary strengths of LLMs and supervised MT by guiding LLMs to automatically post-edit MT with external feedback on its quality, derived from Multidimensional Quality Metric (MQM) annotations. Working with LLaMA-2 models, we consider prompting strategies varying the nature of feedback provided and then fine-tune the LLM to improve its ability to exploit the provided guidance. Through experiments on Chinese-English, English-German, and English-Russian MQM data, we demonstrate that prompting LLMs to post-edit MT improves TER, BLEU and COMET scores, although the benefits of fine-grained feedback are not clear. Fine-tuning helps integrate fine-grained feedback more effectively and further improves translation quality based on both automatic and human evaluation.
+<a id="quick_start"></a>
+## 🚀 Quick Start
 
-
-## Quick Links
-- [Overview](#overview)
-- [Automatic Error Annotation](#automatic-error-annotation)
-- [Prompting Experiments](#prompting-experiments)
-- [Fine-tuning Experiments](#fine-tuning-experiments)
-
-## Overview
-Working with LLaMA-2 models, we consider prompting strategies varying the nature of feedback provided and then fine-tune the LLM to improve its ability to exploit the provided guidance. Through experiments on Chinese-English, English-German, and English-Russian MQM data, we demonstrate that prompting LLMs to post-edit MT improves TER, BLEU and COMET scores, although the benefits of fine-grained feedback are not clear. Fine-tuning helps integrate fine-grained feedback more effectively and leads to further improvements in translation quality based on both automatic and human evaluation. The following figure is an illustration of our work.
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/b46a55f0-f312-4182-80d1-5ad7a56697b5" width="600">
-</p>
-
-## Automatic Error Annotation
+### Automatic Error Annotation
 We can automatically annotate error spans, error type, and severity level using [InstructScore](https://github.com/xu1998hz/SEScore3/tree/main). InstructScore is an explainable text generation evaluation metric, which fine-tunes LLaMA to predict MQM style fine-grained error annotations. This metric only supports Chinese-English.
 
 ```bash
@@ -57,7 +92,7 @@ Arguments for the xCOMET detection script are as follows,
 - `--cache_dir`: Cache directory of pre-trained model checkpoints
 
 
-## Prompting Experiments
+### Prompting Experiments
 We provide a source text, a MT output and depending on the feedback level, condition some feedback on the quality of MT. We opt to construct our prompting templates in English, rather than the target language, likely due to the greater prevalence of English in the pre-training data.
 
 Our experiment encompasses the following forms of feedback for each model:
@@ -68,7 +103,7 @@ Our experiment encompasses the following forms of feedback for each model:
      - `InstructScore`
      - `xCOMET` (do not provide error type information)
 
-### Prompting
+#### (1) Prompting
 We set the temperature to 0 for greedy decoding throughout all experiments. For few-shot prompting, we randomly sample in-context examples. To run prompting on LLaMA models,
 ```
 python -u code/prompting/prompt-mqm.py \
@@ -99,7 +134,7 @@ Arguments for the prompting script are as follows,
 - `--target_lang`: Target language in ISO code
 
 
-### Evaluation
+#### (2) Evaluation
 We report three metrics as our evaluation. Scores for all these metrics are reported in the 0-1 range.
 - `BLUE`: Implemented from `sacrebleu` toolkit with exponential smoothing
 - `Translation Edit Rate` (TER): The minimum number of edits needed to change a hypothesis so that it exactly matches one of the references, normalized by the average length of the references.
@@ -137,7 +172,7 @@ DEVICE:  cuda:0
 ...
 ```
 
-## Fine-tuning Experiments
+### Fine-tuning Experiments
 For fine-tuning with error annotations, we construct MQM error annotations into instruction-following style. We adopt QLoRA, quantized version of LoRA for parameter-efficient fine-tuning.
 | LoRA config | Value |
 | - | - |
@@ -155,7 +190,7 @@ Warmup phase | 20 steps
 Train epochs | 5
 
 Below are the preliminary steps for making fine-tuning datasets. We reformulate all annotations in an instruction-following style. We automatically filter out instances that share identical source or target sentences with those in the test set to ensure a clean train/test separation.
-### [Step 0] Making Fine-tuning Templates
+#### Step 0. Making Fine-tuning Templates
 ```
 python -u code/fine-tuning/make-template.py \
   --input_path $PATH_TO_MQM_DATA \
@@ -175,7 +210,7 @@ Arguments for template creation script are as follows,
 - `--target_lang`: Target language in ISO code
 
 
-### [Step 1] Randomly Shuffle Instructions
+#### Step 1. Randomly Shuffle Instructions
 ```
 python -u code/fine-tuning/random-shuffle.py \
   --file_path $PATH_TO_INSTRUCTIONS \
@@ -183,7 +218,7 @@ python -u code/fine-tuning/random-shuffle.py \
 ```
 After shuffling, we push the dataset to Huggingface to load efficiently during fine-tuning.
 
-### [Step 2] Fine-tune with LLaMA-2 Models
+#### Step 2. Fine-tune with LLaMA-2 Models
 We can fine-tune with LLaMA-2 7B (`fine-tune-7b.py`) or 13B (`fine-tune-13b.py`). After fine-tuning, the script will produce (1) Trainer file, (2) Tokenizer file of the instruction fine-tuned model.
 ```
 python -u code/fine-tuning/fine-tune-7b.py \
@@ -201,7 +236,7 @@ Arguments for fine-tuning script are as follows,
 - `--tokenizer_save_dir`: Save path of fine-tuned tokenizer file
 - `--cache_dir`: Cache directory of pre-trained model checkpoints or dataset
 
-### [Step 3] Evaluation
+#### Step 3. Evaluation
 We can evaluate with our custom fine-tuned model.
 ```
 python -u code/fine-tuning/evaluate.py \
@@ -213,7 +248,12 @@ Arguments are as follows,
 - `--pickle_dir`: Path to output model pickle file
 - `--test_data_path`: Path to input test data file
 
-## Citation
+
+---
+
+<a id="citation"></a>
+## 🤲 Citation
+If you find our work useful in your research, please consider citing our work:
 ```
 @inproceedings{ki-carpuat-2024-guiding,
     title = "Guiding Large Language Models to Post-Edit Machine Translation with Error Annotations",
@@ -229,6 +269,10 @@ Arguments are as follows,
     publisher = "Association for Computational Linguistics",
     url = "https://aclanthology.org/2024.findings-naacl.265",
     pages = "4253--4273",
-    abstract = "Machine Translation (MT) remains one of the last NLP tasks where large language models (LLMs) have not yet replaced dedicated supervised systems. This work exploits the complementary strengths of LLMs and supervised MT by guiding LLMs to automatically post-edit MT with external feedback on its quality, derived from Multidimensional Quality Metric (MQM) annotations. Working with LLaMA-2 models, we consider prompting strategies varying the nature of feedback provided and then fine-tune the LLM to improve its ability to exploit the provided guidance. Through experiments on Chinese-English, English-German, and English-Russian MQM data, we demonstrate that prompting LLMs to post-edit MT improves TER, BLEU and COMET scores, although the benefits of fine-grained feedback are not clear. Fine-tuning helps integrate fine-grained feedback more effectively and further improves translation quality based on both automatic and human evaluation.",
 }
 ```
+
+
+<a id="contact"></a>
+## 📧 Contact
+For questions, issues, or collaborations, please reach out to [dayeonki@umd.edu](mailto:dayeonki@umd.edu).
